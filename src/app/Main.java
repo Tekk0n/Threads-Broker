@@ -3,7 +3,8 @@ package app;
 public class Main {
 
     public static final int MAX_SHARES = 30;
-    public static void main(String[] args) throws InterruptedException{
+
+    public static void main(String[] args) {
         Broker broker = new Broker(MAX_SHARES);
 
         Client Pedro = new Client("Pedro", broker);
@@ -17,19 +18,21 @@ public class Main {
         Elena.start();
         Jesus.start();
 
-
         System.out.println("Joining...");
-        Pedro.join();
-        Patricia.join();
-        Elena.join();
-        Jesus.join();
+        try {
+            Pedro.join();
+            Patricia.join();
+            Elena.join();
+            Jesus.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("Interrupt");
-        Pedro.interrupt();
-        Patricia.interrupt();
-        Elena.interrupt();
-        Jesus.interrupt();
-
-        System.out.println("Done.");
+//        System.out.println("Interrupt");
+//        Pedro.interrupt();
+//        Patricia.interrupt();
+//        Elena.interrupt();
+//        Jesus.interrupt();
+//        System.out.println("Done.");
     }
 }
